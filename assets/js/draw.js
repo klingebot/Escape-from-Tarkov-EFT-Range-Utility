@@ -14,7 +14,7 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = 600;
 
 // Add image underneath canvas
-var img = document.createElement("img");
+var img = document.getElementById('imgMap');
 img.src = "./assets/img/maps/customs.png";
 img.width = canvas.width;
 img.height = canvas.height;
@@ -99,11 +99,20 @@ function draw(e) {
     ctx.fill();
 
     // Distance above second circle drawing
-    // #TODO - dynamically change text area based on canvas size
-    ctx.beginPath();
-    ctx.font = '24px serif';
-    ctx.fillText(distance(pos1.x, e.clientX, pos1.y, e.clientY, 1150, 600), e.clientX+10, e.clientY-10);
-    ctx.closePath();
+    // Move text if too close to top or right
+    if(e.clientX > 950 || e.clientY < 50){
+      console.log("1");
+      ctx.beginPath();
+      ctx.font = '24px serif';
+      ctx.fillText(distance(pos1.x, e.clientX, pos1.y, e.clientY, 1150, 600), e.clientX-75, e.clientY+30);
+      ctx.closePath();
+    }else{
+      console.log("3");
+      ctx.beginPath();
+      ctx.font = '24px serif';
+      ctx.fillText(distance(pos1.x, e.clientX, pos1.y, e.clientY, 1150, 600), e.clientX+10, e.clientY-10);
+      ctx.closePath();
+    }
 
   }
 }
